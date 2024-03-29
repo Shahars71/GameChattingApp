@@ -1,17 +1,19 @@
 package com.example.gamechattingapp.models;
 
+import java.util.List;
+
 public class UserProfile {
 
     private String nickName;
     private String bio;
-    private int image; // Integer
-    private int id_;
+    private int profilePhoto; // Integer
+    private List<GameProfile> favoriteGames;
 
-    public UserProfile(String nickName, String bio, int image, int id_) {
+    public UserProfile(String nickName, String bio, int profilePhoto, int id_, List<GameProfile> favoriteGames) {
         this.nickName = nickName;
         this.bio = bio;
-        this.image = image;
-        this.id_ = id_;
+        this.profilePhoto = profilePhoto;
+        this.favoriteGames = favoriteGames;
     }
 
     public void setNickName(String name) {
@@ -22,24 +24,24 @@ public class UserProfile {
         this.bio = price;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setProfilePhoto(int image) {
+        this.profilePhoto = image;
     }
 
-    public String getName() {
+    public String getNickName() {
         return nickName;
     }
 
-    public String getPrice() {
+    public String getBio() {
         return bio;
+    } 
+
+    public int getProfilePhoto() {
+        return profilePhoto;
     }
 
-    public int getId_() {
-        return id_;
-    }
-
-    public int getImage() {
-        return image;
+    public List<GameProfile> getFavoriteGames() {
+        return favoriteGames;
     }
 }
 
