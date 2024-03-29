@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "391462382434",
+    "project_id": "gamechattingapp",
+    "storage_bucket": "gamechattingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391462382434:android:c4d9eb21a513ab27441a3b",
+        "android_client_info": {
+          "package_name": "com.example.gamechattingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmqnpkCUa6HW7gXLaoC5tj6TE4CAby7iQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
