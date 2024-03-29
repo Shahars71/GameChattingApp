@@ -18,7 +18,7 @@ public class UserProfile {
         this.nickName = name;
     }
 
-    public void setPrice(String price) {
+    public void setBio(String price) {
         this.bio = price;
     }
 
