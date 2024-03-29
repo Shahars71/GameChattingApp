@@ -3,13 +3,13 @@ package com.example.gamechattingapp.models;
 public class UserProfile {
 
     private String nickName;
-    private String price;
+    private String bio;
     private int image; // Integer
     private int id_;
 
-    public UserProfile(String nickName, String price, int image, int id_) {
+    public UserProfile(String nickName, String bio, int image, int id_) {
         this.nickName = nickName;
-        this.price = price;
+        this.bio = bio;
         this.image = image;
         this.id_ = id_;
     }
@@ -19,7 +19,7 @@ public class UserProfile {
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        this.bio = price;
     }
 
     public void setImage(int image) {
@@ -31,7 +31,7 @@ public class UserProfile {
     }
 
     public String getPrice() {
-        return price;
+        return bio;
     }
 
     public int getId_() {
