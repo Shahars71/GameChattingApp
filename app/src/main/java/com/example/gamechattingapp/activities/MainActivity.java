@@ -1,43 +1,62 @@
 package com.example.gamechattingapp.activities;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.content.ContentValues;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.navigation.Navigation;
 
 import com.example.gamechattingapp.R;
+import com.example.gamechattingapp.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+
+    public User currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+
+        mAuth = FirebaseAuth.getInstance();
     }
     public void registerUserData() {
             EditText userEmail = this.findViewById(R.id.emailInput);
             EditText userPass = this.findViewById(R.id.passwordInput);
             EditText userName = this.findViewById(R.id.nameinput);
-            EditText userPhone = this.findViewById(R.id.phone_input);
-            EditText userAge = this.findViewById(R.id.age_input);
+            EditText userNickname = this.findViewById(R.id.nickname_input);
+
 
 
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             //DatabaseReference myRef = database.getReference("users").child(userName.getText().toString());
 
-            User user1 = new User(userEmail.getText().toString(),userPass.getText().toString(),userPhone.getText().toString(),userAge.getText().toString(),userName.getText().toString());
+            User user1 = new User(userEmail.getText().toString(),userPass.getText().toString(),userNickname.getText().toString(),userName.getText().toString());
             String email=userEmail.getText().toString();
 
             String password=userPass.getText().toString();
@@ -83,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     fetchUserDetails(user);
                                     //updateUI(user);
-                                    Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_shopFragment);
+                                    Navigation.findNavController(v).navigate(R.id.action_login_to_userProfile);
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -95,30 +114,31 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
 
-            private void fetchUserDetails(FirebaseUser firebaseUser) {
-                    if (firebaseUser != null) {
-                        String userId = firebaseUser.getUid();
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId);
-                        //DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//a@a.com
-                        //String email = FirebaseDatabase.getInstance().getReference("users").child(userId).child("email");
-                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
+    private void fetchUserDetails(FirebaseUser firebaseUser) {
+        if (firebaseUser != null) {
+            String userId = firebaseUser.getUid();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                Log.d("FirebaseDebug", "onDataChange invoked.");
-                                User user = dataSnapshot.getValue(User.class);
-                                if (user != null) {
-                                    currentUser = user;
-                                    usernameTextView.setText(currentUser.getName());
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("FirebaseDebug", "onCancelled invoked.");
-                                // Handle possible errors
-                            }
-                        });
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user != null) {
+                        currentUser =user;
+                        // You can use this User object as needed
                     }
                 }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle possible errors
+                }
+            });
+        }
+    }
+
+
+
+
+
 }

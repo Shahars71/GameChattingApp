@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.UserProfile" >
+    tools:context=".fragments.UserProfile">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            tools:src="@tools:sample/avatars" />
 
         <LinearLayout
             android:layout_width="250px"
@@ -42,4 +44,16 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/goToGamesListbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Games" />
+
+    <Button
+        android:id="@+id/toChats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="chats" />
 </LinearLayout>

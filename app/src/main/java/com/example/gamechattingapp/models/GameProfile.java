@@ -5,7 +5,7 @@ public class GameProfile {
     private String gameName;
     private String description;
     private String publisher;
-    private String platform
+    private String platform;
     private int bannerImage;
 
     public GameProfile(String gameName, String description, String publisher, String platform, int bannerImage) {
@@ -52,7 +52,7 @@ public class GameProfile {
         return platform;
     }
 
-    public String getBannerImage() {
+    public int  getBannerImage() {
         return bannerImage;
     }
 }

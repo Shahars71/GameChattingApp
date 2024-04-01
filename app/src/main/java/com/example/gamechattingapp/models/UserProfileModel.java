@@ -2,14 +2,14 @@ package com.example.gamechattingapp.models;
 
 import java.util.List;
 
-public class UserProfile {
+public class UserProfileModel {
 
     private String nickName;
     private String bio;
     private int profilePhoto; // Integer
     private List<GameProfile> favoriteGames;
 
-    public UserProfile(String nickName, String bio, int profilePhoto, int id_, List<GameProfile> favoriteGames) {
+    public UserProfileModel(String nickName, String bio, int profilePhoto, int id_, List<GameProfile> favoriteGames) {
         this.nickName = nickName;
         this.bio = bio;
         this.profilePhoto = profilePhoto;
