@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
         public void onSignIn(View v) {
-                EditText userEmail = this.findViewById(R.id.emailInput);
-                EditText userPass = this.findViewById(R.id.passwordInput);
+                EditText userEmail = this.findViewById(R.id.loginEmailInput);
+                EditText userPass = this.findViewById(R.id.loginPasswordInput);
 
 
                 String email = userEmail.getText().toString();
